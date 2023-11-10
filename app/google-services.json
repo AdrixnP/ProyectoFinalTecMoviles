@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "146335613577",
+    "project_id": "el-rancho-db-moviles",
+    "storage_bucket": "el-rancho-db-moviles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146335613577:android:c0cff1d066891bc5e5bc58",
+        "android_client_info": {
+          "package_name": "com.adrianparra.proyectomoviles"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVZISALpTC0P4lLTbkSELxqtfLefYlaLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146335613577:android:04b77b25513d7895e5bc58",
+        "android_client_info": {
+          "package_name": "com.example.proyectomoviles"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVZISALpTC0P4lLTbkSELxqtfLefYlaLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146335613577:android:efd6a2dd01c47785e5bc58",
+        "android_client_info": {
+          "package_name": "com.fabiansuarez.mywallet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVZISALpTC0P4lLTbkSELxqtfLefYlaLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
