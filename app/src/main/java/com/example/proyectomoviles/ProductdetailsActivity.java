@@ -42,6 +42,10 @@ public class ProductdetailsActivity extends AppCompatActivity {
         long id = getIntent().getLongExtra("id", -1);
         String documentId = getIntent().getStringExtra("idfirebase");
 
+        int yearint = getIntent().getIntExtra("yearnumero", -1);
+        int cantidadint = getIntent().getIntExtra("cantidadnumero", -1);
+        int preciodouble = getIntent().getIntExtra("precionumero", -1);
+
         // Set the retrieved data to the views
         nametext.setText(nombre);
         descriptiontext.setText(description);
@@ -65,11 +69,11 @@ public class ProductdetailsActivity extends AppCompatActivity {
                 // Pass the product details to the edit activity
                 editIntent.putExtra("nombre", nombre);
                 editIntent.putExtra("description", description);
-                editIntent.putExtra("year", year);
+                editIntent.putExtra("year", yearint);
                 editIntent.putExtra("marca", marca);
                 editIntent.putExtra("imglink", imgLink);
-                editIntent.putExtra("precio", precio);
-                editIntent.putExtra("cantidad", cantidad);
+                editIntent.putExtra("precio", preciodouble);
+                editIntent.putExtra("cantidad", cantidadint);
                 editIntent.putExtra("id", id);
                 editIntent.putExtra("firebaseId", documentId);
                 startActivity(editIntent);

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -105,7 +106,7 @@ public class CartActivity extends AppCompatActivity {
                 db.collection("Productos").document(billId)
                         .delete()
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(CartActivity.this, "Factura borrada", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CartActivity.this, "Factura borrada "+ billId, Toast.LENGTH_SHORT).show();
                             finish();
                         })
                         .addOnFailureListener(e -> Toast.makeText(CartActivity.this, "Error al borrar factura", Toast.LENGTH_SHORT).show());
@@ -116,19 +117,26 @@ public class CartActivity extends AppCompatActivity {
         saveEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String name = billclientNameInput.getText().toString().trim();
+                String phonestr = billphoneclienteInput.getText().toString().trim();
+                String sellername = BillsellernameInput.getText().toString().trim();
+                String datetext = billdateinput.getText().toString().trim();
+
+                int phone = TextUtils.isEmpty(phonestr) ? 0 : Integer.parseInt(phonestr);
+
                 // Start AddProductActivity
                 Map<String, Object> billMap = new HashMap<>();
-                billMap.put("Cliente", billclientNameInput.getText().toString());
-                billMap.put("Telefono", billphoneclienteInput.getText().toString());
-                billMap.put("Vendedor", BillsellernameInput.getText().toString());
-                billMap.put("Fecha", billdateinput.getText().toString());
+                billMap.put("Cliente", name);
+                billMap.put("Telefono", phone);
+                billMap.put("Vendedor", sellername);
+                billMap.put("Fecha", datetext);
                 billMap.put("PrecioTotal", preciototaldelafactura);
                 billMap.put("CantidadProductos", totaldeproductosenfactura);
 
                 // Saving data to Firestore
                 db.collection("Facturas").document(billId)
                         .set(billMap)
-                        .addOnSuccessListener(aVoid -> Toast.makeText(CartActivity.this, "Factura actualizada", Toast.LENGTH_SHORT).show())
+                        .addOnSuccessListener(aVoid -> Toast.makeText(CartActivity.this, "Factura actualizada "+ billId, Toast.LENGTH_SHORT).show())
                         .addOnFailureListener(e -> Toast.makeText(CartActivity.this, "Error al actualizar factura", Toast.LENGTH_SHORT).show());
             }
         });
@@ -152,7 +160,11 @@ public class CartActivity extends AppCompatActivity {
                                 Cart myCart = document.toObject(Cart.class);
                                 // Assuming the date is stored under a field named "creationDate" in Firestore
                                 String subdocumentId = document.getId();
+
+                                Log.d("manuel",subdocumentId);
+
                                 Cart.setSavesubid(subdocumentId);
+
                                 Cart.setSavemainid(billId);
 
                                 Cadaproductovalortotal = Cart.getTotalamountproductoncart();

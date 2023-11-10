@@ -54,10 +54,13 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
                         intent.putExtra("nombre", product.getNombre());
                         intent.putExtra("description", product.getDescription()); // corrected the key "desciption" to "description"
                         intent.putExtra("year", product.getYearToStr());
+                        intent.putExtra("yearnumero", product.getYear());
                         intent.putExtra("marca", product.getMarca());
                         intent.putExtra("imglink", product.getImgLink());
                         intent.putExtra("precio", product.getPriceToStr());
+                        intent.putExtra("precionumero", product.getPrecio());
                         intent.putExtra("cantidad", product.getCantidadToStr()); // adding cantidad
+                        intent.putExtra("cantidadnumero", product.getCantidad());
                         intent.putExtra("id", product.getId());
                         intent.putExtra("idfirebase", product.getDocumentID());// adding id
 

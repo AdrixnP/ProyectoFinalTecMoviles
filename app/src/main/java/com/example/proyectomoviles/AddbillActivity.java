@@ -85,25 +85,19 @@ public class AddbillActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        // Now, use the ID generated for the main document to create a reference
                         DocumentReference mainDocumentRef = db.collection("Facturas").document(mainDocumentId);
 
-                        // Create the "Productos Carrito" subcollection
                         CollectionReference productosCarritoRef = mainDocumentRef.collection("Productos Carrito");
 
-                        // Create a simple subdocument
                         Map<String, Object> placeholder = new HashMap<>();
                         placeholder.put("IDFacturaReferencia", mainDocumentId);
 
-                        // Add the subdocument to the subcollection
                         productosCarritoRef.add(placeholder)
                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                     @Override
                                     public void onSuccess(DocumentReference documentReference) {
-                                        Toast.makeText(AddbillActivity.this, "Bill and subdocument added successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddbillActivity.this, "Factura creada con subcolección", Toast.LENGTH_SHORT).show();
                                         // Vaciar la subcolección después de agregar el subdocumento
-                                        clearSubcollection(productosCarritoRef);
-
                                         // Opcionalmente, limpiar los campos de entrada o cerrar la actividad
                                         clearInputs();
                                     }
@@ -130,13 +124,11 @@ public class AddbillActivity extends AppCompatActivity {
         billsellerInput.setText("");
     }
 
-    // Función para vaciar la subcolección
     private void clearSubcollection(CollectionReference collectionReference) {
         collectionReference.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        // Iterar sobre los documentos y eliminarlos
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             documentSnapshot.getReference().delete();
                         }
